@@ -18,6 +18,6 @@ public class HealthBar : MonoBehaviour
         _target.HealthPointsChanged -= UpdateValue;
     }
 
-    private void UpdateValue(HealthPoints healthPoints) => _scrollbar.size = healthPoints.CurrentPercentage;
+    private void UpdateValue(Hp healthPoints) => _scrollbar.size = healthPoints.GetPercentage();
 }
 
