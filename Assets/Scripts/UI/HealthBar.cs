@@ -10,12 +10,12 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         _scrollbar = GetComponent<Scrollbar>();
-        _target.OnHpChanged += UpdateValue;
+        _target.HealthPointsChanged += UpdateValue;
     }
 
     private void OnDestroy()
     {
-        _target.OnHpChanged -= UpdateValue;
+        _target.HealthPointsChanged -= UpdateValue;
     }
 
     private void UpdateValue(HealthPoints healthPoints) => _scrollbar.size = healthPoints.CurrentPercentage;

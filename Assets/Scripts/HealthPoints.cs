@@ -7,8 +7,9 @@ public class HealthPoints
     [SerializeField]
     [Min(float.Epsilon)]
     private float _max;
+
     [SerializeField]
-    [Range(0f, 1f)]
+    [Range(float.Epsilon, 1f)]
     private float _current;
 
     public float Max => _max;

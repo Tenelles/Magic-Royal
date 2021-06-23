@@ -5,18 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MortalBody : MonoBehaviour
 {
-    public event Action<HealthPoints> OnHpChanged;
+    public event Action<HealthPoints> HealthPointsChanged;
 
-    [SerializeField] private HealthPoints _healthPoints;
+    [SerializeField] private HealthPoints _healthPoints = new HealthPoints(1);
     private bool _isVulnerable;
 
     public bool IsVulnerable => _isVulnerable;
 
-    private void Start() => Initialize(_healthPoints);
-
-    private void Initialize(HealthPoints healthPoints)
+    private void Start()
     {
-        _healthPoints = healthPoints;
         _isVulnerable = true;
         Debug.Log(_healthPoints.CurrentPercentage);
     }
@@ -37,7 +34,7 @@ public class MortalBody : MonoBehaviour
         _healthPoints.Decrease(damage);
 
         StartCoroutine(nameof(ChangeVulnerability));
-        OnHpChanged?.Invoke(_healthPoints);
+        HealthPointsChanged?.Invoke(_healthPoints);
         Debug.Log(_healthPoints.CurrentPercentage);
     }
 
